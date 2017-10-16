@@ -8,6 +8,6 @@ public interface Text2SpeechDAO {
 
 	List<Text2SpeechVO> getText2SpeechList() throws Exception;
 
-	void delete(int no) throws Exception;
+	int deleteText2Speech(int no) throws Exception;
 
 }

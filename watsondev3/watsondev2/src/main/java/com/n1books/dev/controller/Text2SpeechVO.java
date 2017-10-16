@@ -2,8 +2,7 @@ package com.n1books.dev.controller;
 
 import java.io.Serializable;
 
-public class Text2SpeechVO implements Serializable{
-
+public class Text2SpeechVO implements Serializable {
 	private int no;
 	private String statement;
 	private String lang;
@@ -29,5 +28,6 @@ public class Text2SpeechVO implements Serializable{
 	public String toString() {
 		return "Text2SpeechVO [no=" + no + ", statement=" + statement + ", lang=" + lang + "]";
 	}
-
+	
+	
 }

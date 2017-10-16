@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibm.watson.developer_cloud.text_to_speech.v1.TextToSpeech;
@@ -31,7 +34,15 @@ public class Text2SpeechController {
 	public ModelAndView hello() {
 		return new ModelAndView("hello", "msg", "Hello MVC");
 	}
-	
+	@RequestMapping(
+			value="displayJSON2",
+			headers="Accept=application/json;charset=UTF-8",
+			produces= {MediaType.APPLICATION_JSON_UTF8_VALUE}
+			)
+	@ResponseBody
+	public List<Text2SpeechVO> display_json() throws Exception {
+		return service.getText2SpeechList();
+	}
 	@RequestMapping("display")
 	public ModelAndView display_voice() throws Exception {
 		TextToSpeech service2 = new TextToSpeech(
@@ -61,18 +72,28 @@ public class Text2SpeechController {
 				"Content-Disposition", "attachment;filename=" +
 				URLEncoder.encode("voice.ogg","UTF-8"));
 		
-		service.insertText2Speech(vo);
+		//service.insertText2Speech(vo);
 		
 		InputStream is = service.getSpeech(vo.getStatement(), vo.getLang());
 		OutputStream os = response.getOutputStream();
 		FileCopyUtils.copy(is, os);
 	}
-	@GetMapping("delete")
-	public ModelAndView delete(int no) throws Exception{
-		logger.info("no:"+no);
-		
-		service.delete(no);
-		return new ModelAndView("redirect:display"); 
-		
+	
+	@RequestMapping("delete/{no}")
+	public ModelAndView delete(@PathVariable int no) {
+		logger.info("no: "+no);
+		ModelAndView mav= new ModelAndView("result");
+		try {
+			service.deleteText2Speech(no);
+			mav.addObject("msg",no+"번 레코드 삭제 성공");
+			mav.addObject("url","../display");
+		} catch (Exception e) {
+			mav.addObject("msg", no+"번 레코드 삭제 실패");
+			mav.addObject("url","../display");
+			e.printStackTrace();
+		}
+		return mav;
 	}
+	
+
 }
