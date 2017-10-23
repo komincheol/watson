@@ -12,9 +12,9 @@ import com.ibm.watson.developer_cloud.text_to_speech.v1.util.WaveUtils;
 public class Text2SpeechTest1 {
 	public static void main(String[] args) {
 		TextToSpeech service = new TextToSpeech(
-				"0a3f4d46-2ab1-4b73-ab79-9970543734ce", "MEOCGJkFDFTv");
+				"username", "password");
 //		service.setUsernameAndPassword(
-//				"0a3f4d46-2ab1-4b73-ab79-9970543734ce", "MEOCGJkFDFTv");
+//				"username", "password");
 
 //		List<Voice> voices = service.getVoices().execute();
 //		System.out.println(voices);

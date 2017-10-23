@@ -22,7 +22,7 @@ public class Text2SpeechServiceImpl
 
 	public Text2SpeechServiceImpl() {
 		setUsernameAndPassword(
-			"0a3f4d46-2ab1-4b73-ab79-9970543734ce", "MEOCGJkFDFTv");
+			"username", "password");
 	}
 
 	public List<Voice> getVoiceList() throws Exception {

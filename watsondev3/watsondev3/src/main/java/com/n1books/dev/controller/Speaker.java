@@ -35,7 +35,7 @@ public class Speaker extends HttpServlet {
 				"Content-Disposition", "attachment;filename=" +
 				URLEncoder.encode("voice.ogg","UTF-8"));
 
-		TextToSpeech service = new TextToSpeech("0a3f4d46-2ab1-4b73-ab79-9970543734ce", "MEOCGJkFDFTv");
+		TextToSpeech service = new TextToSpeech("username", "password");
 		InputStream is = service.synthesize(statement, new Voice(voice,null,null), AudioFormat.OGG).execute();
 		OutputStream os = response.getOutputStream();
 		

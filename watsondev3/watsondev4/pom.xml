@@ -133,7 +133,7 @@
 		<dependency>
 			<groupId>com.ibm.watson.developer_cloud</groupId>
 			<artifactId>java-sdk</artifactId>
-			<version>4.0.0</version>
+			<version>3.8.0</version>
 		</dependency>
 		       
 		<!-- spring jdbc -->

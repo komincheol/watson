@@ -49,7 +49,7 @@ public class Text2SpeechController {
 	@RequestMapping("display")
 	public ModelAndView display_voice() throws Exception {
 		TextToSpeech service2 = new TextToSpeech(
-				"0a3f4d46-2ab1-4b73-ab79-9970543734ce", "MEOCGJkFDFTv");
+				"username", "password");
 		List<Text2SpeechVO> list = service.getText2SpeechList();
 		
 		List<Voice> voices = service2.getVoices().execute();
